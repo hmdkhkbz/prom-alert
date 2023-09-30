@@ -69,3 +69,16 @@ sudo apt-get install grafana -y
 sudo systemctl start grafana-server
 
 sudo systemctl enable grafana-server
+
+# know we need to configure iptables with following rules (Hardening)
+
+iptables -A INPUT -p tcp --dport 9090 -j DROP
+iptables -A INPUT -p tcp --dport 3000 -j DROP
+iptables -A INPUT -p tcp --dport 9093 -j DROP
+iptables -A INPUT -p tcp --dport 9100 -j DROP
+iptables -A INPUT -p tcp --dport 80 -j DROP
+iptables -I INPUT 1 -s 127.0.0.1 -j ACCEPT
+
+sudo apt-get install iptables-persistent
+sudo netfilter-persistent save
+
