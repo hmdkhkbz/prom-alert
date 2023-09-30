@@ -25,18 +25,30 @@ systemctl enable nginx
 
 # we install node exporter with binary
 
-wget https://github.com/prometheus/alertmanager/releases/download/v0.25.0/alertmanager-0.25.0.linux-amd64.tar.gz
+wget https://github.com/prometheus/alertmanager/releases/download/v0.25.0/alertmanager-0.25.0.linux-amd64.tar.gz 
+
 tar xvfz alertmanager-0.25.0.linux-amd64.tar.gz
+
 mkdir -p /etc/alertmanager
+
 mkdir -p /var/lib/alertmanager
+
 mkdir -p /etc/amtool
+
 cp alertmanager-0.25.0.linux-amd64/alertmanager /usr/local/bin/
+
 cp alertmanager-0.25.0.linux-amd64/alertmanager.yml /etc/alertmanager
+
 cp alertmanager-0.25.0.linux-amd64/amtool /usr/local/bin/
+
 sudo useradd -M -r -s /bin/false alertmanager
+
 chown alertmanager:alertmanager /usr/local/bin/alertmanager
+
 chown -R alertmanager:alertmanager /etc/alertmanager
+
 chown alertmanager:alertmanager /var/lib/alertmanager
+
 
 # it is recommanded for checking the content of "/etc/systemd/system/alertmanager.service" and customize for your environment.
 
@@ -45,9 +57,15 @@ sudo systemctl start node_exporter
 sudo systemctl enable node_exporter
 
 sudo apt-get install -y software-properties-common
+
 sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+
 wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+
 sudo apt-get update
+
 sudo apt-get install grafana -y
+
 sudo systemctl start grafana-server
+
 sudo systemctl enable grafana-server
