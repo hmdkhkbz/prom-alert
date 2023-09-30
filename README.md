@@ -90,4 +90,29 @@ sudo apt-get install iptables-persistent
 
 sudo netfilter-persistent save
 
+# for generate TLS/SSL Certificate we are using certbot as below:
+
+sudo apt update
+sudo apt install certbot python3-certbot-nginx -y
+sudo systemctl stop nginx
+sudo certbot --nginx -d grafana.hmdkhkbz.ir
+sudo systemctl start nginx
+
+
 # for monitor another nodes you need to configure node exporter on that node
+
+wget https://github.com/prometheus/node_exporter/releases/download/v1.2.2/node_exporter-1.2.2.linux-amd64.tar.gz
+tar xvfz node_exporter-1.2.2.linux-amd64.tar.gz
+mv node_exporter-1.2.2.linux-amd64/node_exporter /usr/local/bin
+
+# it is recommanded to configure "/etc/systemd/system/node_exporter.service" and customize for your environment.
+
+useradd -rs /bin/false node_exporter
+
+systemctl daemon-reload
+
+systemctl start node_exporter
+
+systemctl enable node_exporter
+
+systemctl status node_exporter
