@@ -56,6 +56,8 @@ sudo systemctl daemon-reload
 sudo systemctl start node_exporter
 sudo systemctl enable node_exporter
 
+# for alerting there is alert rules in alerts.yml 
+
 sudo apt-get install -y software-properties-common
 
 sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
