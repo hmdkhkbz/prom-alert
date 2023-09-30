@@ -92,10 +92,16 @@ sudo netfilter-persistent save
 
 # for generate TLS/SSL Certificate we are using certbot as below:
 
+
+
 sudo apt update
+
 sudo apt install certbot python3-certbot-nginx -y
+
 sudo systemctl stop nginx
+
 sudo certbot --nginx -d grafana.hmdkhkbz.ir
+
 sudo systemctl start nginx
 
 
