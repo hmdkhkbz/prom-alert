@@ -53,7 +53,9 @@ chown alertmanager:alertmanager /var/lib/alertmanager
 # it is recommanded for checking the content of "/etc/systemd/system/alertmanager.service" and customize for your environment.
 
 sudo systemctl daemon-reload
+
 sudo systemctl start node_exporter
+
 sudo systemctl enable node_exporter
 
 # for alerting there is alert rules in alerts.yml 
