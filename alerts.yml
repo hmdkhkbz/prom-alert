@@ -1,5 +1,5 @@
 groups:
-- name: example
+- name: alertrule
   rules:
   - alert: HighRequestLatency
     expr: http_request_duration_seconds{job="myjob"} > 0.5
@@ -8,3 +8,43 @@ groups:
       severity: page
     annotations:
       summary: High request latency
+
+  - alert: HighMemoryUsage
+    expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes > 0.8
+    for: 10m
+    labels:
+      severity: warning
+    annotations:
+      summary: High memory usage
+
+  - alert: HighCPUUsage
+    expr: (100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[10m])) * 100)) > 80
+    for: 10m
+    labels:
+      severity: warning
+    annotations:
+      summary: High CPU usage
+
+  - alert: DiskSpaceRunningLow
+    expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) < 0.2
+    for: 10m
+    labels:
+      severity: warning
+    annotations:
+      summary: Disk space running low
+
+  - alert: InstanceDown
+    expr: up == 0
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: Instance down
+
+  - alert: NetworkLatency
+    expr: rate(node_network_transmit_errs_total[5m]) > 0
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: Network latency
