@@ -74,7 +74,7 @@ sudo systemctl start grafana-server
 
 sudo systemctl enable grafana-server
 
-# know we need to configure iptables with following rules (Hardening)
+# we need to configure iptables with following rules (Hardening)
 
 iptables -A INPUT -p tcp --dport 9090 -j DROP
 
