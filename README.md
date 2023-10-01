@@ -127,3 +127,16 @@ systemctl start node_exporter
 systemctl enable node_exporter
 
 systemctl status node_exporter
+
+# Setup Middle-man service for send alerts to telegram bot
+
+git clone https://github.com/inCaller/prometheus_bot.git
+
+cd prometheus_bot
+
+go build -o prometheus_bot
+
+#Create a configuration file named config.yaml in the same directory as the binary.
+
+./prometheus_bot -c config.yaml
+
