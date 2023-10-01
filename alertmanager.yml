@@ -3,9 +3,8 @@ route:
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 3h 
-  receiver: 'notifications'
+  receiver: 'telegram-bot'
 receivers:
-- name: 'notifications'
-  slack_configs:
-  - api_url: 'https://localhost/'
-    channel: '#prometheus'
+- name: 'telegram-bot'
+  webhook_configs:
+  - url: 'http://localhost:9087/alert'
