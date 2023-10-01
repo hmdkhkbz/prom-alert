@@ -140,3 +140,4 @@ go build -o prometheus_bot
 
 ./prometheus_bot -c config.yaml
 
+# use proxy/vpn in iran for connetion to Telegram API
